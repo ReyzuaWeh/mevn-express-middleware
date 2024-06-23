@@ -21,7 +21,7 @@ apiRouter.post('/read', async (req, res) => {
     });
 });
 
-apiRouter.post('/update', async (req, res) => {
+apiRouter.patch('/update', async (req, res) => {
     try {
         const { nama, email, password, id } = req.body;
         if (!id) {
@@ -56,7 +56,7 @@ apiRouter.post('/update', async (req, res) => {
         });
     }
 });
-apiRouter.post('/delete', async (req, res) => {
+apiRouter.delete('/delete', async (req, res) => {
     userModel.user.findByIdAndDelete(req.body.id).then(data => {
         if (!data) {
             return res.status(404).json({ msg: 'Tidak ada data yang dihapus' });

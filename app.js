@@ -9,6 +9,7 @@ const port = 3000;
 const crud = require('./router/crud');
 const auth = require('./router/auth');
 const userRouter = require('./router/user');
+const chatRouter = require('./router/chat');
 
 app.use(cors({
     origin: '*',
@@ -26,6 +27,7 @@ app.use(session({
 app.use('/api/v1/crud', crud.apiRouter);
 app.use('/api/v1/auth', auth.apiRouter);
 app.use('/api/v1/user', userRouter.apiRouter);
+app.use('/api/v1/chat', chatRouter.apiRouter);
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
@@ -37,19 +39,6 @@ app.get('/api/login/:nama', async (req, res) => {
         });
     } catch (err) {
         res.status(401);
-    }
-});
-app.post('/api/login', async (req, res) => {
-    try {
-        const cekUser = await userModel.user.find({ nama: req.body.nama });
-        if (cekUser.length > 0) {
-            res.status(200).json({ message: cekUser });
-        } else {
-            res.status(404).json({ error: 'User not found' });
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 // app.use((req, res) => {
