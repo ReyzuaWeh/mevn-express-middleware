@@ -10,6 +10,7 @@ const crud = require('./router/crud');
 const auth = require('./router/auth');
 const userRouter = require('./router/user');
 const chatRouter = require('./router/chat');
+const postRouter = require('./router/post');
 
 app.use(cors({
     origin: '*',
@@ -28,6 +29,7 @@ app.use('/api/v1/crud', crud.apiRouter);
 app.use('/api/v1/auth', auth.apiRouter);
 app.use('/api/v1/user', userRouter.apiRouter);
 app.use('/api/v1/chat', chatRouter.apiRouter);
+app.use('/api/v1/post', postRouter.apiRouter);
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
